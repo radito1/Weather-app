@@ -1,7 +1,7 @@
 import WeatherSearch from "./components/WeatherSearch"
 
 function App() {
-    return <div> <WeatherSearch/></div>
+    return  <WeatherSearch/>
 }
 
 export default App;
