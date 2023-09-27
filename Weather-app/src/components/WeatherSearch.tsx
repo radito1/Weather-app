@@ -1,65 +1,66 @@
 import { ChangeEvent, useState } from "react";
 
 function WeatherSearch() {
-  const [input, setInput] = useState("");
-  const [weather, setWeather] = useState();
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+const [input, setInput] = useState("");
+const [weather, setWeather] = useState();
+
+const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
-  };
+};
 
-  const fetchWeatherByCoordinates = (lat: string, lon: string) => {
+const fetchWeatherByCoordinates = (lat: string, lon: string) => {
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=c6bb3ac90e06b38201400c242a9404c2&units=metric`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=c6bb3ac90e06b38201400c242a9404c2&units=metric`
     )
-      .then((response) => {
+    .then((response) => {
         return response.json();
-      })
-      .then((weatherData) => {
+    })
+    .then((weatherData) => {
         setWeather(weatherData);
         console.log("Weather data by coordinates:", weather);
-      })
-      .catch((error) => {
+    })
+    .catch((error) => {
         console.error("Error fetching weather data by coordinates:", error);
-      });
-  };
+    });
+};
 
-  const fetchData = (location: string) => {
+const fetchData = (location: string) => {
     fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=c6bb3ac90e06b38201400c242a9404c2`
+    `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=c6bb3ac90e06b38201400c242a9404c2`
     )
-      .then((response) => {
+    .then((response) => {
         return response.json();
-      })
-      .then((data) => {
+    })
+    .then((data) => {
         if (data.length > 0) {
-          const { lat, lon } = data[0];
-          fetchWeatherByCoordinates(lat, lon);
+        const { lat, lon } = data[0];
+        fetchWeatherByCoordinates(lat, lon);
         }
-      })
-      .catch((error) => {
+    })
+    .catch((error) => {
         console.error("Error fetching weather data:", error);
-      });
-  };
+    });
+};
 
-  const handleSearchClick = () => {
+const handleSearchClick = () => {
     fetchData(input);
-  };
+};
 
-  return (
+return (
     <div className="main-container">
-      <input
+<input
         className="search-field"
         type="text"
         value={input}
         onChange={handleChange}
-      />
-      <button className="search-button" onClick={handleSearchClick}>
+    />
+    <button className="search-button" onClick={handleSearchClick}>
         Search
-      </button>
-      <p>Your input: {input}</p>
+    </button>
+    <p>Your input: {input}</p>
     </div>
-  );
+);
 }
 
 export default WeatherSearch;
