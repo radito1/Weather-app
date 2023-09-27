@@ -49,6 +49,7 @@ const handleSearchClick = () => {
 
 return (
     <div className="main-container">
+        <h2 className="location-text">Enter Location</h2>
 <input
         className="search-field"
         type="text"

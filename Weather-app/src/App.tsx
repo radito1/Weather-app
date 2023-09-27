@@ -1,7 +1,11 @@
-import WeatherSearch from "./components/WeatherSearch"
+import WeatherSearch from "./components/WeatherSearch";
 
 function App() {
-    return  <WeatherSearch/>
+return (
+    <main>
+        <WeatherSearch />
+    </main>
+);
 }
 
 export default App;

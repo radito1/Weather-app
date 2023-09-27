@@ -1,6 +1,14 @@
 body {
+    padding: 50px 50px;
     background: rgb(154, 157, 159);
     background: linear-gradient(349deg, rgba(154, 157, 159, 1) 0%,
             rgba(215, 241, 249, 0.999019676229867) 45%,
             rgba(0, 67, 255, 0.3659664549413515) 87%);
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
 }
