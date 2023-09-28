@@ -60,7 +60,6 @@ function WeatherSearch() {
                 <button className="search-button" onClick={handleSearchClick}>
                     Search
                 </button>
-                <p>Your input: {input}</p>
             </div>
 
             <div>{weather && <WeatherCard data={weather} />}</div>

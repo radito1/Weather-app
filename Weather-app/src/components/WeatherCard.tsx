@@ -1,4 +1,5 @@
 function WeatherCard(props) {
+    
     return (
         <div className="weather-card-container">
             <div className="top-section">
