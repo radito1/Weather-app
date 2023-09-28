@@ -1,10 +1,18 @@
-function WeatherCard(props) {
+import '../styles/WeatherCard.css'
+
+import { WeatherData } from './WeatherSearch';
+
+interface WeatherCardInterface {
+    weather: WeatherData;
+}
+
+const WeatherCard = ({ weather }: WeatherCardInterface) => {
 
     const iconBaseUrl = "http://openweathermap.org/img/w/";
 
-    const iconUrl = `${iconBaseUrl}${props.data.weather[0].icon}.png`;
+    const iconUrl = `${iconBaseUrl}${weather.weather[0].icon}.png`;
 
-    return ( 
+    return (
         <div className="weather-card-container">
             <div className="top-section">
                 <img src={iconUrl} alt="Weather Icon" />
@@ -12,11 +20,11 @@ function WeatherCard(props) {
 
             <div className="bottom-section">
                 <div className="current-temp-container">
-                    <div> Current temp: {props.data.main.temp} °C</div>
+                    <div> Current temp: {weather.main.temp} °C</div>
                 </div>
                 <div className="min-max-temp-container">
-                    <div>Min temp: {props.data.main.temp_min} °C</div>
-                    <div>Max temp: {props.data.main.temp_max} °C</div>
+                    <div>Min temp: {weather.main.temp_min} °C</div>
+                    <div>Max temp: {weather.main.temp_max} °C</div>
                 </div>
             </div>
         </div>

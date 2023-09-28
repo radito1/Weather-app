@@ -1,9 +1,55 @@
 import { ChangeEvent, useState } from "react";
 import WeatherCard from "./WeatherCard";
+import '../styles/WeatherSearch.css'
+
+export interface WeatherData {
+    coord: {
+        lon: number;
+        lat: number;
+    };
+    weather: {
+        id: number;
+        main: string;
+        description: string;
+        icon: string;
+    }[];
+    base: string;
+    main: {
+        temp: number;
+        feels_like: number;
+        temp_min: number;
+        temp_max: number;
+        pressure: number;
+        humidity: number;
+        sea_level: number;
+        grnd_level: number;
+    };
+    visibility: number;
+    wind: {
+        speed: number;
+        deg: number;
+        gust: number;
+    };
+    clouds: {
+        all: number;
+    };
+    dt: number;
+    sys: {
+        type: number;
+        id: number;
+        country: string;
+        sunrise: number;
+        sunset: number;
+    };
+    timezone: number;
+    id: number;
+    name: string;
+    cod: number;
+}
 
 function WeatherSearch() {
     const [input, setInput] = useState("");
-    const [weather, setWeather] = useState(null);
+    const [weather, setWeather] = useState<WeatherData | null>(null);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setInput(e.target.value);
@@ -16,7 +62,7 @@ function WeatherSearch() {
             .then((response) => {
                 return response.json();
             })
-            .then((weatherData) => {
+            .then((weatherData: WeatherData ) => {
                 setWeather(weatherData);
                 console.log("Weather data by coordinates:", weather);
             })
@@ -62,7 +108,7 @@ function WeatherSearch() {
                 </button>
             </div>
 
-            <div>{weather && <WeatherCard data={weather} />}</div>
+            <div>{weather && <WeatherCard weather={weather} />}</div>
         </div>
     );
 }
