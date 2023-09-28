@@ -3,7 +3,7 @@ import WeatherSearch from "./components/WeatherSearch";
 function App() {
 return (
     <main>
-        <WeatherSearch />
+    <WeatherSearch />
     </main>
 );
 }
